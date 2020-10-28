@@ -40,12 +40,18 @@ function arrRandomNumbers(min, max,repetition){
             numero=parseInt(prompt("inserisci un altro numero"));
             i++;
             console.log(userNumbersArr);
-            } else if(userNumbersArr.includes(numero)===true) { numero=parseInt(prompt("inserisci un altro numero"));
+            } else if(userNumbersArr.includes(numero)===true || numero>100) { numero=parseInt(prompt("inserisci un altro numero"));
             i--;
             console.log(userNumbersArr);}
 
         } else if (arrPc.includes(numero)===true){
             console.log("hai perso con il numero "+numero);
+            userNumbersArr.push(numero);
+            console.log (userNumbersArr);
+            console.log ("Il tuo punteggio è " +userNumbersArr.length)
+            return userNumbersArr;
+        } else if (userNumbersArr.length===lastBet){
+            console.log("hai vinto!!!!!")
             userNumbersArr.push(numero);
             console.log (userNumbersArr);
             return userNumbersArr;
