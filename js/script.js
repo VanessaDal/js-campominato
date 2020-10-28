@@ -12,13 +12,14 @@
 
 function pcRandomNumbers(min, max,repetition){      
     var array=[];
-    var i=0;
+    var i=1;
     while (array.length<repetition && i<=repetition+1){
     var a=Math.floor(Math.random() * (max - min + 1)) + min;
     if (array.includes(a)===false){
         array.push(a)
-    }
-    i++
+        i++
+    } else{i--}
+    
     }
     return array;
   }
