@@ -6,11 +6,10 @@
 // La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
 // Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
 
-//pc genera numeri casuali
+//creo funzione per pc che genera numeri casuali
+//che non si ripetono
 
-
-
-function pcRandomNumbers(min, max,repetition){      
+function arrRandomNumbers(min, max,repetition){      
     var array=[];
     var i=1;
     while (array.length<repetition && i<=repetition+1){
@@ -24,5 +23,34 @@ function pcRandomNumbers(min, max,repetition){
     return array;
   }
 
-  var arrPc=pcRandomNumbers(1,100,16)
+  var arrPc=arrRandomNumbers(1,100,16)
   console.log (arrPc)
+
+  //creo funzione per chiedere all'utente tot numeri
+
+  var userNumbersArr=[];
+
+  function userBet(max,lastBet){
+    var i=1;
+    var numero=parseInt(prompt("inserisci un numero"));
+    while (userNumbersArr.length<=lastBet && i<=max){
+        if(arrPc.includes(numero)===false){
+            if(userNumbersArr.includes(numero)===false)
+            {userNumbersArr.push(numero);
+            numero=parseInt(prompt("inserisci un altro numero"));
+            i++;
+            console.log(userNumbersArr);
+            } else if(userNumbersArr.includes(numero)===true) { numero=parseInt(prompt("inserisci un altro numero"));
+            i--;
+            console.log(userNumbersArr);}
+
+        } else if (arrPc.includes(numero)===true){
+            console.log("hai perso con il numero "+numero);
+            userNumbersArr.push(numero);
+            console.log (userNumbersArr);
+            return userNumbersArr;
+        }
+    }
+  }
+
+  userBet(100,84)
