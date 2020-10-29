@@ -13,50 +13,57 @@ function arrRandomNumbers(min, max,repetition){
     var array=[];
     var i=1;
     while (array.length<repetition && i<=repetition+1){
-    var a=Math.floor(Math.random() * (max - min + 1)) + min;
-    if (array.includes(a)===false){
-        array.push(a)
-        i++
-    } else{i--}
+        var a=Math.floor(Math.random() * (max - min + 1)) + min;
+        if (array.includes(a)===false){
+            array.push(a)
+            i++
+        } else{i--}
     
-    }
+        }
     return array;
   }
 
   var arrPc=arrRandomNumbers(1,100,16)
-  console.log (arrPc)
+  console.log ("debug ",arrPc)
 
   //creo funzione per chiedere all'utente tot numeri
 
   var userNumbersArr=[];
 
-  function userBet(max,lastBet){
+  function userBet(max){
     var i=1;
+    var lastBet=100- arrPc.length;
     var numero=parseInt(prompt("inserisci un numero"));
+    numero;
+    
     while (userNumbersArr.length<=lastBet && i<=max){
         if(arrPc.includes(numero)===false){
-            if(userNumbersArr.includes(numero)===false)
-            {userNumbersArr.push(numero);
-            numero=parseInt(prompt("inserisci un altro numero"));
-            i++;
-            console.log(userNumbersArr);
-            } else if(userNumbersArr.includes(numero)===true || numero>100) { numero=parseInt(prompt("inserisci un altro numero"));
-            i--;
-            console.log(userNumbersArr);}
+            if(userNumbersArr.includes(numero)===false && isNaN(numero)===false &&numero<=max)
+                {userNumbersArr.push(numero);
+                console.log("Yay! "+numero+ " non era una mina.")
+                numero=parseInt(prompt("inserisci un altro numero"));
+                i++;
+                console.log("debug ",userNumbersArr);
+                } else if(userNumbersArr.includes(numero)===true || numero>max || isNaN(numero)===true) { 
+                console.log("Il numero inserito non è valido.")
+                numero=parseInt(prompt("inserisci un altro numero"));
+                
+                i--;
+                console.log("debug ",userNumbersArr);}
 
         } else if (arrPc.includes(numero)===true){
-            console.log("hai perso con il numero "+numero);
+            console.log("Mi dispiace, hai perso! Il numero "+numero+ " era una mina!");
             userNumbersArr.push(numero);
-            console.log (userNumbersArr);
+            console.log ("debug ",userNumbersArr);
             console.log ("Il tuo punteggio è " +userNumbersArr.length)
             return userNumbersArr;
         } else if (userNumbersArr.length===lastBet){
-            console.log("hai vinto!!!!!")
+            console.log("Complimenti,hai vinto!!!!!")
             userNumbersArr.push(numero);
-            console.log (userNumbersArr);
+            console.log ("debug ",userNumbersArr);
             return userNumbersArr;
         }
     }
   }
 
-  userBet(100,84)
+  userBet(100)
