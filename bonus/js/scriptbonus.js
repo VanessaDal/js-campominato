@@ -9,7 +9,19 @@
 //creo funzione per pc che genera numeri casuali
 //che non si ripetono
 
-function arrRandomNumbers(min, max,repetition){      
+var difficolta=parseInt(prompt("scegli il livello di difficoltà tra 0, 1 e 2"));
+
+var max;
+
+if (difficolta===0){
+    max=100;
+} else if (difficolta===1){
+    max=80;
+} else if (difficolta===2){
+    max=50;
+}
+
+function arrRandomNumbers(min,repetition){      
     var array=[];
     var i=1;
     while (array.length<repetition && i<=repetition+1){
@@ -23,14 +35,14 @@ function arrRandomNumbers(min, max,repetition){
     return array;
   }
 
-  var arrPc=arrRandomNumbers(1,100,16)
+  var arrPc=arrRandomNumbers(1,16)
   console.log ("debug ",arrPc)
 
   //creo funzione per chiedere all'utente tot numeri
 
   var userNumbersArr=[];
 
-  function userBet(max){
+  function userBet() {
     var i=1;
     var lastBet=max- arrPc.length;
     var numero=parseInt(prompt("inserisci un numero"));
@@ -66,4 +78,5 @@ function arrRandomNumbers(min, max,repetition){
     }
   }
 
-  userBet(100)
+
+  userBet()
