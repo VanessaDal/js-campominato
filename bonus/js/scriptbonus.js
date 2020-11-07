@@ -9,21 +9,25 @@
 //creo funzione per pc che genera numeri casuali
 //che non si ripetono
 
-var difficolta=parseInt(prompt("scegli il livello di difficoltà tra 0, 1 e 2"));
+// var difficolta=parseInt(prompt("scegli il livello di difficoltà tra 0, 1 e 2"));
+
+var difficolta;
 
 var max;
 
-if (difficolta===0){
+if (difficolta.value==0){
     max=100;
-} else if (difficolta===1){
+} else if (difficolta.value==1){
     max=80;
-} else if (difficolta===2){
+} else if (difficolta.value==2){
     max=50;
 }
 
+difficolta.addEventListener("click",
 function arrRandomNumbers(min,repetition){      
     var array=[];
     var i=1;
+
     while (array.length<repetition && i<=repetition+1){
         var a=Math.floor(Math.random() * (max - min + 1)) + min;
         if (array.includes(a)===false){
@@ -34,6 +38,22 @@ function arrRandomNumbers(min,repetition){
         }
     return array;
   }
+)
+
+// function arrRandomNumbers(min,repetition){      
+//     var array=[];
+//     var i=1;
+
+//     while (array.length<repetition && i<=repetition+1){
+//         var a=Math.floor(Math.random() * (max - min + 1)) + min;
+//         if (array.includes(a)===false){
+//             array.push(a)
+//             i++
+//         } else{i--}
+    
+//         }
+//     return array;
+//   }
 
   var arrPc=arrRandomNumbers(1,16)
   console.log ("debug ",arrPc)
@@ -79,4 +99,4 @@ function arrRandomNumbers(min,repetition){
   }
 
 
-  userBet()
+  inizio.addEventListener("click",userBet)
